@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- TEMPORARY TO TEST AJAX -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="{{asset('js/sp_libs.js')}}"></script>
+        <style>
+            .fos_user_resetting_reset label {
+                font-family: arial;
+                font-size:14px;
+                position:absolute;
+            }
+            .fos_user_resetting_reset input {
+                margin-left:165px;
+                margin-bottom:10px;
+            }
+            .fos_user_resetting_heading_text {
+                font-family: arial;
+                font-size:18px;
+                text-decoration:underline;
+                margin-bottom:20px;
+            }
+            .fos_user_resetting_reset input[type="submit"] {
+                margin-left:0px;
+            }
+            .fos_user_success {
+                font-family: arial;
+                font-size:14px;
+            }
+            .fos_user_user_show {
+                font-family: arial;
+                font-size:14px;
+            }
+        </style>
+    </head>
+    <body>
+        {% for key, message in app.session.getFlashes() %}
+        <div class="{{ key }}">
+            {{ message|trans({}, 'FOSUserBundle') }}
+        </div>
+        {% endfor %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+            {% block preferences %}
+            {% endblock preferences %}
+        </div>
+    </body>
+</html>

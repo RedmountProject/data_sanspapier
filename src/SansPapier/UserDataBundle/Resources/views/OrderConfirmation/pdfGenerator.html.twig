@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr">
+
+    <head>
+        <base href="http://{{app.request.host}}"></base>
+        <meta charset="UTF-8" ></meta>
+
+        {% stylesheets '@SansPapierUserDataBundle/Resources/public/css/*'%}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+            {#<link href="reset.css" type="text/css" rel="stylesheet" />
+            <link href="grid_system.css" type="text/css" rel="stylesheet" />
+            <link href="orders_twig_template.css" type="text/css" rel="stylesheet" />#}
+        {% endstylesheets %}
+
+
+        {% javascripts '@SansPapierUserDataBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </head>
+
+    <body>
+        <div class="container_5" id="main_content">
+
+            <div class="grid_5 container">
+                {% image '@SansPapierUserDataBundle/Resources/public/images/Logo_nomSP.png'%}
+                    <img id="logo" src="{{ asset_url }}" alt="Example"/>
+                {% endimage %}
+                <h2>Votre commande {{ order_num }}</h2>
+            </div>
+
+            <div class="grid_5 container">
+                <p>
+                    <span style="font-size: 14px;">{{ user_name }},</span><br/>
+                    Nous vous remercions pour votre achat sur sanspapier.com !<br/>
+                    Retrouvez les détails de votre commande {{ order_num }} du {{ order_date }} à {{ order_time }} :
+                </p>
+            </div>
+
+            <div class="grid_5 container">
+
+                <div id="order_details_products" class="grid_5">
+                    <div class="tab_image">
+                        <div class="order_details_catTitle">E-BOOK</div>
+
+                        {% for order_product_image in order_product_imageArray %}
+                        <div class="order_product_image"><img src="http://www.sanspapier.com/images/books/{{order_product_image}}"></img></div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="tab_title">
+                        <div class="order_details_catTitle">TITRE / AUTEUR</div>
+
+                        {% for order_product_details in order_product_detailsArray %}
+                        <div class="order_product_title">{{order_product_details.title}}</div>
+                        <div class="order_product_authorName">{{order_product_details.authorName}}</div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="tab_unity_price">
+                        <div class="order_details_catTitle">PRIX UNITAIRE</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                        <div class="order_product_unity_price">{{order_product_uPrice}} €</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab_num">
+                        <div class="order_details_catTitle">QUANTITE</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                        <div class="order_product_num">1</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab_total_price">
+                        <div class="order_details_catTitle">PRIX TOTAL</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                        <div class="order_product_total_price">{{order_product_uPrice}} €</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+                <span class="float_right">Total Commande : {{ total_produits }} €<br/>
+                    Montant Réduction : {{ reduction }} €<br/></span>
+                <div id="total_price" class="grid_5">Total : {{ total_price }} €</div>
+
+            </div>
+
+            <div class="grid_5 container">
+                <div class="grid_12" style="margin-left: 40px;">
+                    Vos informations personnelles : <br/>
+                    {{ user_name }} <br/>
+                    {{ user_mail }}
+                </div>
+
+                <div class="grid_12">
+                    Mode de règlement : <br/>
+                    Paiement par carte bancaire
+                </div>
+
+                <div class="grid_12">
+                    Si certains de vos livres numériques possèdent des DRM, 
+                    nous vous invitons à consulter 
+                    notre rubrique d’explication sur 
+                    sanspapier.com pour en profiter au mieux.
+                </div>
+
+            </div>
+
+            <div class="grid_5 container">
+
+                <div id="mon_compte_content" class="grid_5">
+                    <span style="position: relative; float: left; margin-left: 20px; line-height: 40px; vertical-align: central;">Pour accéder à vos livres et à votre suivi de commandes, rendez-vous sur votre espace personnel sur sanspapier.com.</span>
+
+                    {#<div id="mon_compte_button"></div>#}
+                </div>
+
+            </div>
+
+            <div class="container grid_5">
+                {% image '@SansPapierUserDataBundle/Resources/public/images/group_noir.png'%}
+                        <img id="group_image" src="{{ asset_url }}" alt="Example"/>
+                    {% endimage %}
+                <p id="inline_help">
+                    S’il vous reste des questions, n’hésitez pas à consultez notre aide en ligne ou à contacter notre équipe via notre formulaire de contact.
+                </p>
+
+            </div>
+
+
+            <div class="container grid_5" id="social">
+
+                <div id="social_contacts">
+                    <span style="position: relative; float: left; margin-left: 20px; line-height: 40px; vertical-align: central;">Retrouvez l'actualité et les chroniques littéraires de sanspapier.com sur le blog de la librairie à l'adresse blog.sanspapier.com
+                    </span>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+             
+        </body>
+    </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+
+    <head>
+        <base href="http://{{app.request.host}}"></base>
+        <meta charset="UTF-8" ></meta>
+
+        {% stylesheets '@SansPapierUserDataBundle/Resources/public/css/*'%}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+        {#<link href="reset.css" type="text/css" rel="stylesheet" />
+            <link href="grid_system.css" type="text/css" rel="stylesheet" />
+            <link href="orders_twig_template.css" type="text/css" rel="stylesheet" />#}
+        {% endstylesheets %}
+
+
+        {% javascripts '@SansPapierUserDataBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </head>
+
+    <body style="font-family: Arial; font-size: 12px; color:#333;">
+
+        <div class="container_5" id="main_content" style="position: relative; float: left; margin-left: auto; margin-right: auto; margin-bottom: 20px; width: 960px; border: 1px solid #E9E8E0; padding: 20px;">
+
+            <div class="grid_5 container" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px; width:932px;">
+                {% image '@SansPapierUserDataBundle/Resources/public/images/Logo_nomSP.png'%}
+                    <img id="logo" src="{{ asset_url }}" alt="Example" style="position: relative; float: left;"/>
+                {% endimage %}
+                    <h2 style="font-weight: bold; font-size: 18px; position: relative; float: right;">Votre commande {{ order_num }}</h2>
+                </div>
+
+                <div class="grid_5 container" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px; width:932px;">
+                    <p>
+                        <span style="font-size: 14px;">Bonjour {{ user_name }},</span><br/>
+                        Nous vous remercions pour votre achat sur sanspapier.com !<br/>
+                        Retrouvez les détails de votre commande {{ order_num }} du {{ order_date }} à {{ order_time }} :
+                    </p>
+                </div>
+
+                <div class="grid_5 container" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px; width:932px;">
+
+                    <div id="order_details_products" class="grid_5" style="display:inline; float: left; position: relative; background: #E9E8E0; min-height: 100px; margin:0; margin-top: 10px; padding-top: 10px; padding-bottom: 10px; width:932px;">
+                        <div class="tab_image" style="position: relative; float: left; width: 100px; min-height: 100px; border-right: 1px solid #FFF;">
+                            <div class="order_details_catTitle" style="text-align: center; color: #FFF; font-weight: bold;">E-BOOK</div>
+
+                        {% for order_product_image in order_product_imageArray %}
+                            <div class="order_product_image" style="position: relative; float: left; width: 40px; height: 60px; margin-top: 10px; margin-bottom: 10px; margin-left: 30px; margin-right: 30px;"><img src="http://www.sanspapier.com/images/books/{{order_product_image}}"></img></div>
+                        {% endfor %}
+
+                        </div>
+
+                        <div class="tab_title" style="position: relative; float: left; width: 420px; min-height: 100px; border-right: 1px solid #FFF;">
+                            <div class="order_details_catTitle" style="text-align: center; color: #FFF; font-weight: bold;">TITRE / AUTEUR</div>
+
+                        {% for order_product_details in order_product_detailsArray %}
+                            <div class="order_product_title" style="position: relative; float: left; width: 90%; height: 10px; margin-left: 4%; margin-right: 4%; margin-top: 10px; margin-bottom: 5px; font-weight: bold;">{{order_product_details.title}}</div>
+                            <div class="order_product_authorName" style="position: relative; float: left; width: 90%; height: 50px; margin-left: 4%; margin-right: 4%; margin-top: 5px; font-style: italic; color: #999;">{{order_product_details.authorName}}</div>
+                        {% endfor %}
+                        </div>
+
+                        <div class="tab_unity_price" style="position: relative; float: left; width: 150px; min-height: 100px; border-right: 1px solid #FFF;">
+                            <div class="order_details_catTitle" style="text-align: center; color: #FFF; font-weight: bold;">PRIX UNITAIRE</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                            <div class="order_product_unity_price" style="position: relative; float: right; width: 90%; height: 60px; margin-left: 4%; margin-right: 4%; margin-top: 10px; margin-bottom: 10px; text-align: right; font-style: italic;">{{order_product_uPrice}} €</div>
+                        {% endfor %}
+                        </div>
+
+                        <div class="tab_num" style="position: relative; float: left; width: 100px; min-height: 100px; border-right: 1px solid #FFF;">
+                            <div class="order_details_catTitle" style="text-align: center; color: #FFF; font-weight: bold;">QUANTITE</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                            <div class="order_product_num" style="position: relative; float: right; width: 90%; height: 60px; margin-left: 4%; margin-right: 4%; margin-top: 10px; margin-bottom: 10px; text-align: right;">1</div>
+                        {% endfor %}
+                        </div>
+
+                        <div class="tab_total_price" style="position: relative; float: left; width: 150px; min-height: 100px;">
+                            <div class="order_details_catTitle" style="text-align: center; color: #FFF; font-weight: bold;">PRIX TOTAL</div>
+
+                        {% for order_product_uPrice in order_product_uPriceArray %}
+                            <div class="order_product_total_price" style="position: relative; float: right; width: 90%; height: 60px; margin-left: 4%; margin-right: 4%; margin-top: 10px; margin-bottom: 10px; text-align: right; font-style: italic; font-weight: bold;">{{order_product_uPrice}} €</div>
+                        {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <span class="float_right" style="position: relative; float: right; margin-top: 10px; margin-bottom: 10px; font-style: italic; text-align: right;">Total Commande : {{ total_produits }} €<br/>
+                        Montant Réduction : {{ reduction }} €<br/></span>
+                    <div id="total_price" class="grid_5" style="display:inline; position: relative; float: right; width:932px; text-align: right; background: #E9E8E0; margin: 0; padding-top: 5px; padding-bottom: 5px; font-style: italic; font-weight: bold;">Total : {{ total_price }} €</div>
+
+                </div>
+
+                <div class="grid_5 container" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px;">
+                    <div class="grid_12" style="display:inline; float: left; position: relative; margin-right: 10px; margin-top:10px; margin-left: 40px; width:267px;">
+                        Vos informations personnelles : <br/>
+                    {{ user_name }} <br/>
+                    {{ user_mail }}
+                    </div>
+
+                    <div class="grid_12" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; width:267px;">
+                        Mode de règlement : <br/>
+                        Paiement par carte bancaire
+                    </div>
+
+                    <div class="grid_12" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; width:267px;">
+                        Si certains de vos livres numériques possèdent des DRM, 
+                        nous vous invitons à consulter 
+                        notre <a href="http://www.sanspapier.com/aide_en_ligne.php#drm">rubrique d'explication</a> sur 
+                        sanspapier.com pour en profiter au mieux.
+                    </div>
+
+                </div>
+
+                <div class="grid_5 container" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px;">
+
+                    <div id="mon_compte_content" class="grid_5" style="display:inline; float: left; position: relative; width:932px; background: #E9E8E0; height: 40px; margin: 0; margin-top: 10px;">
+                        <span style="position: relative; float: left; margin-left: 20px; line-height: 40px; vertical-align: central;">Pour télécharger vos livres et accéder à votre suivi de commande, rendez-vous sur votre espace personnel sur sanspapier.com :</span>
+
+                        <a style="position:relative; float: left; width: 100px; height: 40px; background: url('http://www.sanspapier.com/images/sp_sprite.png') -704px -15px no-repeat; cursor:pointer;margin-top:6px;margin-left:20px;" href="http://www.sanspapier.com/profile.php#achats"></a>
+                    </div>
+
+                </div>
+
+                <div class="container grid_5" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px;">
+                {% image '@SansPapierUserDataBundle/Resources/public/images/group_noir.png'%}
+                        <img id="group_image" src="{{ asset_url }}" alt="Example" style="position: relative; float: left; margin-left: 390px;"/>
+                    {% endimage %}
+                        <p id="inline_help" style="position: relative; float: left; width: 60%; margin-left: 20%; text-align: center;">
+                            S'il vous reste des questions, n'hésitez pas à consultez notre <a href="http://www.sanspapier.com/aide_en_ligne.php">aide en ligne</a> ou à contacter notre équipe via notre <a href="http://www.sanspapier.com/a_propos.php#contact">formulaire de contact</a>.
+                        </p>
+
+                    </div>
+
+
+                    <div class="container grid_5" id="social" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px;">
+
+                        <div id="social_contacts" style="background: #E9E8E0; height: 40px; margin: 0; margin-top: 10px;">
+                            <span style="position: relative; float: left; margin-left: 20px; line-height: 40px; vertical-align: central;">Retrouvez sanspapier.com sur Facebook et Twitter : 
+                            </span>
+                                {% image '@SansPapierUserDataBundle/Resources/public/images/iconefbblog_blanc.png'%}<a href="http://www.facebook.com/pages/Sanspapiercom/322993334441560" style="cursor: pointer; position: relative; float: left; margin:0; margin-top: 5px; margin-left:10px;"><img style="position: relative; float: left;" id="fb" src="{{ asset_url }}" alt=""/></a>{% endimage %}
+                                {% image '@SansPapierUserDataBundle/Resources/public/images/iconetwtblog_blanc.png'%}<a href="https://twitter.com/Sanspap" style="cursor: pointer; position: relative; float: left; margin:0; margin-top: 5px; margin-left:10px;"><img style="position: relative; float: left;" id="tw" src="{{ asset_url }}" alt=""/></a>{% endimage %}
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                 
+            </body>
+        </html>

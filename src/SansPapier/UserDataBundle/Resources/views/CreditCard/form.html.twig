@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- TEMPORARY TO TEST AJAX -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/sp_libs.js')}}"></script>
+  </head>
+  <body>
+    <img id="list_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+    <div id="credit_card_list_container">
+    </div>
+    <div>
+      <!-- REMOVE ABOVE AFTER TESTING -->
+      <form action="{{ path('sanspapier_creditcard_create') }}" method="post" {{ form_enctype(form) }} id="{{form.vars.id}}">
+    {#{ form_widget(form) }#}
+          <div>
+            <label for="{{ form.number.vars.id }}">{{ form.number.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+          {{ form_widget(form.number) }}
+          </div>
+
+          <div>
+            <label for="{{ form.expiration.vars.id }}">{{ form.expiration.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+          {{ form_widget(form.expiration) }}
+          </div>
+
+          <div>
+            <label for="{{ form.holder.vars.id }}">{{ form.holder.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+          {{ form_widget(form.holder) }}
+          </div>
+
+          <div>
+            <label for="{{ form.credit_card_type.vars.id }}">{{ form.credit_card_type.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+          {{ form_widget(form.credit_card_type) }}
+          </div>
+        {{ form_widget(form._token) }}
+          <input type="submit" id="_submit" name="_submit" value="{{ 'credit_card.submit'|trans({}, 'SansPapierUserDataBundle') }}" />
+          <img id="{{form.vars.id}}_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+        </form>
+      </div>
+      <script type="text/javascript" src="{{ asset('js/jquery.confirm-1.3.js')}}"></script>
+      <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+      <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+      <script type="text/javascript">
+   (function(){ 
+     
+    // there is a bad bug with symfony2 date format in form type.
+    // we have to run some jQuery magics to help
+    function format_date_input(){
+      // hides the day we do not need here;
+      var day, month, year;
+      day = $('#sanspapier_userdatabundle_creditcardtype_expiration_day');
+      month = $('#sanspapier_userdatabundle_creditcardtype_expiration_month');
+      year = $('#sanspapier_userdatabundle_creditcardtype_expiration_year');
+      $('#sanspapier_userdatabundle_creditcardtype_expiration').empty();
+      $(day).hide();
+      $('#sanspapier_userdatabundle_creditcardtype_expiration').append(day).append(month).append("/").append(year);
+    }
+     
+    // refresh the credit card list
+    function refresh_card_list(){
+       $('#list_load_anim').show();
+       $.ajax({
+        url: '{{ path('sanspapier_creditcard_list') }}',
+        data: [],
+        success: function(data) {
+          $('#credit_card_list_container').html(data);
+          $('#list_load_anim').hide();
+          
+          // get the selected card
+          $.ajax({
+              url: Routing.generate('sanspapier_creditcard_get_selected'),
+              data: [],
+              success: function(data) {
+                if(data.status){
+                 $('#selected_'+data.data).attr('checked', true);
+                }
+               }
+            });
+          
+          // selection stuff
+          $('.card_select_checkbox').change(function(evt){
+            var ct = evt.currentTarget;
+            var id = $(evt.currentTarget).attr("id").split("_")[1];
+            $('.card_select_checkbox').each(function(idx,elem){
+              if($(elem).attr("id") !== $(ct).attr("id")){
+                $(elem).attr('checked', false);
+              }
+            });
+
+            $.ajax({
+              url: Routing.generate('sanspapier_creditcard_set_selected', { '_id': id }),
+              data: [],
+              success: function(data) {
+                // should be nothing to do here
+               }
+            });
+          });
+          
+          $('.delete_link').click(function(evt){
+          evt.preventDefault();
+          var trg = evt.currentTarget.href;
+          var refresh = refresh_card_list;
+            $.get(trg, function(data){
+              refresh();
+            });
+          });
+          $('.delete_link').confirm({
+            msg:'{{ 'credit_card.delete_confirm'|trans({}, 'SansPapierUserDataBundle') }}',
+            timeout:3000,
+            buttons: {
+              ok:'{{ 'global.yes'|trans({}, 'SansPapierUserDataBundle') }}',
+              cancel:'{{ 'global.no'|trans({}, 'SansPapierUserDataBundle') }}',
+              separator:' / '
+            }
+           });
+        },
+      dataType: "html"
+    });
+    }
+    
+    // format the date input form
+    format_date_input();
+    // call the refresh once
+    $('#list_load_anim').hide();
+    refresh_card_list();
+    
+    // store the form id
+    var form_id = '{{form.vars.id}}';
+    
+    // hide the ajax loader animation  
+    $('#'+form_id+'_load_anim').hide();
+    
+    // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+    $('#'+form_id).submit(function(evt){ 
+      evt.preventDefault(); // very important, it bypass the form submission mecanism
+      
+      SPFormMapper.removeErrorElements(form_id);
+      SPFormMapper.createErrorElements(form_id);
+      
+      $('#'+form_id+'_load_anim').show(); // show the wheel, to tells that ajax is working here
+      var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+      $.post('{{ path('sanspapier_creditcard_create') }}', serialized_data, function(response){
+        $('#'+form_id+'_load_anim').hide(); // okay, ajax request is over.
+        //check if form is valid
+        if(!response.status){ // not valid
+          SPFormMapper.displayErrors(form_id, response.valid_errors);
+        }else{ // valid
+          //SPFormMapper.replaceForm(form_id, response.message);
+          refresh_card_list();
+        }
+      });
+    }); 
+    
+  })();
+      </script>
+        <!-- REMOVE ABOVE AFTER TESTING -->
+      </body>
+    </html>
+
+

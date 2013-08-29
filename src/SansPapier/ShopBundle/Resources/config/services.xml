@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <parameters>
+    <!-- solr conf -->
+    <parameter key="sans_papier_shop.solr.host">192.168.1.19</parameter>
+    <parameter key="sans_papier_shop.solr.port">8983</parameter>
+    <parameter key="sans_papier_shop.solr.core_catalog">SolrCatalog</parameter>
+    <parameter key="sans_papier_shop.solr.path">/solr/</parameter>
+    <parameter key="sans_papier_shop.solr.currency">EUR</parameter>
+    
+    <!-- paiment conf -->
+    <parameter key="sans_papier_shop.socgen.proxy">http://localhost/socgen/proxy.php</parameter>
+    <parameter key="sans_papier_shop.socgen.decoder">http://localhost/socgen/decoder.php</parameter>
+    <parameter key="sans_papier_shop.socgen.merchant_id">"075158321200012"</parameter><!-- quotes because it has to be string param -->
+    <parameter key="sans_papier_shop.socgen.merchant_country">fr</parameter>
+    <parameter key="sans_papier_shop.socgen.currency_code">978</parameter>
+    
+    <!-- redirect conf -->
+    <parameter key="sans_papier_shop.redirect.transaction_success.protocol">http</parameter>
+    <parameter key="sans_papier_shop.redirect.transaction_success.url">/shop.html?confirmed=true</parameter>
+    <parameter key="sans_papier_shop.redirect.transaction_fail.protocol">http</parameter>
+    <parameter key="sans_papier_shop.redirect.transaction_fail.url">/shop.html?confirmed=false</parameter>
+    
+    <!-- dilicom conf -->
+    <parameter key="sans_papier_shop.dilicom.gln">"3025594309107"</parameter><!-- quotes because it have to be string param -->
+    <parameter key="sans_papier_shop.dilicom.password">keipaeguigeiwaik4ooPothae</parameter>
+    <parameter key="sans_papier_shop.dilicom.url">https://hub-test.centprod.com/v1/hub-numerique-api/json/sendOrder</parameter>
+    <parameter key="sans_papier_shop.dilicom.offset">100000</parameter>
+    <parameter key="sans_papier_shop.dilicom.gln_distrib">3012410001000</parameter>
+  </parameters>
+  
+</container>

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <parameters>
+        <parameter key="sans_papier_books_mart.solr.host">78.248.89.121</parameter>
+        <parameter key="sans_papier_books_mart.solr.port">8983</parameter>
+        <parameter key="sans_papier_books_mart.solr.core_catalog">SolrCatalog</parameter>
+        <parameter key="sans_papier_books_mart.solr.path">/solr/</parameter>
+        <parameter key="sans_papier_books_mart.solr.core_edito">SolrEditoSelection</parameter>
+        <parameter key="sans_papier_books_mart.solr.currency">EUR</parameter>
+        
+        <parameter key="sans_papier_books_mart.unitex.host">192.168.1.30</parameter>
+        <parameter key="sans_papier_books_mart.unitex.port">6666</parameter>
+    </parameters>
+    
+
+    <!--
+    <services>
+        <service id="sans_papier_books_mart.example" class="%sans_papier_books_mart.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+</container>

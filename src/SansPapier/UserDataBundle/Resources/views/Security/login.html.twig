@@ -1,0 +1,77 @@
+{#% extends "FOSUserBundle::layout.html.twig" %#}
+{% block fos_user_content %}
+<div>
+
+{% if error %}
+    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+{% endif %}
+    <form action="{{ path("fos_user_security_check") }}" method="post" id="login_form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div>
+            <div class="formAccountLabel"><label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label></div>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+        <div>
+            <div class="formAccountLabel"><label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label></div>
+            <input type="password" id="password" name="_password" />
+        </div>
+        <div class="actionButton">
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+            <img id="login_form_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+(function () {
+    // store the form id
+    var form_id = 'login_form';
+    // hide the ajax loader animation  
+    $("#login_form_load_anim").hide();
+
+    // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+    $('#' + form_id).submit(function (evt) {
+        evt.preventDefault(); // very important, it bypass the form submission mecanism
+
+        SPFormMapper.removeErrorElements(form_id);
+        SPFormMapper.createErrorElements(form_id);
+
+        $("#login_form_load_anim").show(); // show the wheel, to tells that ajax is working here
+        var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+        $.post('{{ path("fos_user_security_check") }}', serialized_data, function (response) {
+            $("#login_form_load_anim").hide(); // okay, ajax request is over.
+            //check if form is valid
+            if (!response.status) { // not valid
+                SPFormMapper.displayErrors(form_id, response.valid_errors);
+            } else { // valid
+                $('#forgottenPasswordZone').hide();
+                $('#registerZone').hide();
+                
+                if (typeof AjaxController != "undefined") {
+                    if(typeof AjaxController.isComplete != "undefined"){
+                      AjaxController.isComplete();
+                    }
+                }
+
+                if (typeof response.redirection !== "undefined") { // check if we have to redirect the user
+                    if (typeof window.sanspapier !== "undefined") {
+                        window.sanspapier.logged = true;
+                    }
+
+                    // make the redirection
+                    $(location).attr('href', response.redirection);
+                } else {
+                    if (typeof window.sanspapier !== "undefined") {
+                        window.sanspapier.logged = false;
+                    }
+                    SPFormMapper.replaceForm(form_id, response.message);
+                }
+                AjaxController.connected(connected);
+            }
+        });
+    });
+
+})(); 
+    </script>
+{% endblock fos_user_content %}

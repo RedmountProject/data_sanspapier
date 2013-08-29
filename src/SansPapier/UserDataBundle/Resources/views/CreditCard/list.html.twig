@@ -1,0 +1,26 @@
+<table class="credit_card_list">
+  <thead>
+    <tr>
+      <th>{{ 'sanspapier_userdatabundle_creditcardtype_selection' |trans({}, 'SansPapierUserDataBundle') }}</th>
+      <th>{{ 'sanspapier_userdatabundle_creditcardtype_number' |trans({}, 'SansPapierUserDataBundle') }}</th>
+      <th>{{ 'sanspapier_userdatabundle_creditcardtype_expiration' |trans({}, 'SansPapierUserDataBundle') }}</th>
+      <th>{{ 'sanspapier_userdatabundle_creditcardtype_holder' |trans({}, 'SansPapierUserDataBundle') }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entity in entities %}
+      <tr>
+        <td><input type="checkbox" class="card_select_checkbox" id="selected_{{entity.getCreditCardId}}" /></td>
+        <td>{{ entity.number }}</td>
+        <td>{% if entity.expiration %}{{ entity.expiration|date('m/Y') }}{% endif %}</td>
+        <td>{{ entity.holder }}</td>
+        <td>
+
+          <a class="delete_link" href="{{ path('sanspapier_creditcard_delete', { 'id': entity.getCreditCardId }) }}"><img src="{{ asset('images/delete.png') }}" alt="delete" /></a>
+
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table> 

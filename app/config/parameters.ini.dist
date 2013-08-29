@@ -1,0 +1,30 @@
+; These parameters can be imported into other config files
+; by enclosing the key with % (like %database_user%)
+; Comments start with ';', as in php.ini
+[parameters]
+    
+    ;user_db
+    user_db_driver   = pdo_mysql
+    user_db_host     = localhost
+    user_db_port     =
+    user_db_name     = user_sanspapier
+    user_db_user     = root
+    user_db_password = root 
+
+    ;shop_db
+    shop_db_driver   = pdo_mysql
+    shop_db_host     = localhost
+    shop_db_port     =
+    shop_db_name     = shop_sanspapier
+    shop_db_user     = root
+    shop_db_password = root   
+
+    ;mailer
+    mailer_transport  = smtp
+    mailer_host       = localhost
+    mailer_user       =
+    mailer_password   =
+
+    locale            = en
+
+    secret            = ThisTokenIsNotSoSecretChangeIt

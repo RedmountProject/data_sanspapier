@@ -1,0 +1,782 @@
+{
+"responseHeader":
+{
+    "status":0,
+    "QTime":10,
+    "params":
+    {
+        "wt":"json",
+        "facet":"false",
+        "indent":"on",
+        "hl":"false",
+        "q":"termes de la requete solr"
+    }
+ },
+ "response":
+ {
+    "numFound":18,
+    "start":0,
+    //Liste des produits pour une page de résultats de recherche, triés par product_rank
+    //Le produit de product_rank=1 est le "livre pivot" affiché au centre de la cible
+    //Les suivants doivent être affichés du centre vers la périphérie de la cible par product_rank croissant
+    "docs":[
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_id":1,
+            "author_rank":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_id":14,
+            "author_rank":2,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+    
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+    
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+    
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+    
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+    
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    },
+    {
+        "product_rank":1,
+        "product_id":145,
+        "title":"L'enfant d'entre-les-deux",
+        "genres":[
+        {
+            "genre_rank":1,
+            "genre_id":6,
+            "genre_name":"Roman historique"
+        },
+        {
+            "genre_rank":2,
+            "genre_id":9,
+            "genre_name":"Roman noir"
+        }],
+        "publisher":
+        {
+            "publisher_id":13,
+            "publisher_name":"Editions Zinedi"
+        },
+        "authors":[
+        {
+            "author_rank":1,
+            "author_id":1,
+            "author_firstname":"Jacques",
+            "author_lastname":"Gnorra"
+        },
+        {
+            "author_rank":2,
+            "author_id":14,
+            "author_firstname":"Franck",
+            "author_lastname":"Giulli"
+        }],
+        "description":"Sacha est un enfant turbulent, un \"hyperactif\", \n\
+                       selon la formule consacrée. LA faute à un Q.I. supérieur! \n\
+                       Il n'en fallait pas plus pour que ses parents...",
+        "formats":[
+        {
+            "format_id":1,
+            "forma_name":"Epub"
+        },
+        {
+            "format_id":2,
+            "forma_name":"PDF"
+        }],
+        "product_price":
+        {
+            "price":7.99,
+            "currency":"€"
+        }
+    }]
+}}

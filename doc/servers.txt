@@ -1,0 +1,2 @@
+SVN:
+svn://192.168.0.35/home/svn/REPOsanspapier/

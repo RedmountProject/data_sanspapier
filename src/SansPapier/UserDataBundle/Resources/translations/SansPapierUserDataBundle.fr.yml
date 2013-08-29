@@ -1,0 +1,59 @@
+# Sans Papier translations
+global:
+  yes: Oui
+  no: Non
+
+change_password:
+  title: Modifier mon mot de passe
+  
+credit_card:
+  submit: Ajouter une Carte de Crédit
+  delete: Supprimer
+  delete_confirm: Valider la suppression ?
+  added:
+    success: La Carte de Crédit a bien été ajoutée aux moyens de paiements.
+
+#preferences 
+user_preferences: "Mes coordonnées :"
+#customization
+user_customization: "Mes paramètres :"
+user_customization_description: "Choisissez les éditeurs, les genres littéraires et les thèmes dont vous désirez suivre l’actualité. Une fois vos préférences enregistrées, de nouveaux onglets apparaîtront sur la page d’accueil (vous devez être connecté pour que les onglets soient visibles)."
+user_customization_publishers: "Mes éditeurs favoris : "
+user_customization_publishers_description : "Saisissez le nom des maisons d'édition qui vous intéressent pour retrouver leurs parutions."
+user_customization_genres: "Mes genres favoris : "
+user_customization_genres_description : "Sélectionnez les genres qui vous passionnent dans les listes, et restez informé des parutions dans ces domaines."
+user_customization_keywords: "Les recherches que je veux suivre :"
+user_customization_keywords_description : "Essayez avec vos centres d'intérêt, vos sujets de curiosité et prenez connaissance des publications les concernant."
+
+#billing address
+billing_address: "Adresse de facturation :"
+
+#credit card
+sanspapier_userdatabundle_creditcardtype_selection: "Selectionner"
+sanspapier_userdatabundle_creditcardtype_number: "Numéro de Carte"
+sanspapier_userdatabundle_creditcardtype_expiration: "Date d'expiration"
+sanspapier_userdatabundle_creditcardtype_holder: "Titulaire de la Carte"
+sanspapier_userdatabundle_creditcardtype_credit_card_type: "Type de Carte"
+
+
+#publishers pref
+sanspapier_userdatabundle_customizationtype_publisher_1: "Editeur no 1"
+sanspapier_userdatabundle_customizationtype_publisher_2: "Editeur no 2"
+sanspapier_userdatabundle_customizationtype_publisher_3: "Editeur no 3"
+sanspapier_userdatabundle_customizationtype_publisher_4: "Editeur no 4"
+sanspapier_userdatabundle_customizationtype_publisher_5: "Editeur no 5"
+
+#genres pref
+sanspapier_userdatabundle_customizationtype_genre_1: "Genre no 1"
+sanspapier_userdatabundle_customizationtype_genre_2: "Genre no 2"
+sanspapier_userdatabundle_customizationtype_genre_3: "Genre no 3"
+sanspapier_userdatabundle_customizationtype_genre_4: "Genre no 4"
+sanspapier_userdatabundle_customizationtype_genre_5: "Genre no 5"
+
+#keywords pref
+sanspapier_userdatabundle_customizationtype_search_1: "Mot Clé no 1"
+sanspapier_userdatabundle_customizationtype_search_2: "Mot Clé no 2"
+sanspapier_userdatabundle_customizationtype_search_3: "Mot Clé no 3"
+sanspapier_userdatabundle_customizationtype_search_4: "Mot Clé no 4"
+sanspapier_userdatabundle_customizationtype_search_5: "Mot Clé no 5"
+

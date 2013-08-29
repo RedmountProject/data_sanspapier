@@ -1,0 +1,38 @@
+{% form_theme form theme %}
+<h1>{{ 'change_password.title'|trans({}, 'SansPapierUserDataBundle') }}</h1>
+<form id="{{ form.vars.id }}" action="{{ path('sanspapier_change_password') }}" {{ form_enctype(form) }} method="POST" class="fos_user_change_password">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" id="_changepassword" value="{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}" />
+        <img class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+    </div>
+</form>
+
+<script type="text/javascript">
+  
+(function(){  
+  // store the form id
+  var form_id = '{{ form.vars.id }}';
+  // hide the ajax loader animation  
+  $(".load_anim").hide();
+   // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+  $('#'+form_id).submit(function(evt){ 
+      evt.preventDefault(); // very important, it bypass the form submission mecanism
+      SPFormMapper.removeErrorElements(form_id);
+      SPFormMapper.createErrorElements(form_id);
+      
+      $(".load_anim").show(); // show the wheel, to tells that ajax is working here
+      var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+      $.post('{{ path('sanspapier_change_password_submit') }}', serialized_data, function(response){
+        $(".load_anim").hide(); // okay, ajax request is over.
+        //check if form is valid
+        if(!response.status){ // not valid
+           SPFormMapper.displayErrors(form_id, response.valid_errors);
+        }else{ // valid
+         // alert('cool');
+        }
+      });
+  }); 
+  
+})();  
+</script>  

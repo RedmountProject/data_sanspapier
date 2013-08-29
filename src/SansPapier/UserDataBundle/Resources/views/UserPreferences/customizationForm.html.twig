@@ -1,0 +1,293 @@
+
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- TEMPORARY TO TEST AJAX -->
+    <!--<link rel="stylesheet" href="{{asset('css/autocomplete.css')}}" type="text/css" media="screen" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/sp_libs.js')}}"></script>
+  </head>
+  <body>
+    <div>-->
+      <!-- REMOVE ABOVE AFTER TESTING -->
+
+      <form action="{{ path('sanspapier_userpreferences_customization_update') }}" method="post" {{ form_enctype(form) }} id="{{ form.vars.id }}">
+    {{ form_errors(form) }}
+          <h4 style="padding:10px;border:1px dashed #008000; color:#008000;line-height:21px;font-family:Arial;">{{ 'user_customization_description' |trans({}, 'SansPapierUserDataBundle') }}</h4>
+
+          <div class="customization_part">
+            <h3>{{ 'user_customization_genres' |trans({}, 'SansPapierUserDataBundle') }}</h3>
+            <div class="user_customization_decriptions">{{ 'user_customization_genres_description' |trans({}, 'SansPapierUserDataBundle') }}</div>
+            <div>  
+              <label for="{{ form.genre_1.vars.id }}">{{ form.genre_1.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.genre_1) }}
+      {{ form_widget(form.genre_1) }}
+            </div> 
+            <div>  
+              <label for="{{ form.genre_2.vars.id }}">{{ form.genre_2.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.genre_2) }}
+      {{ form_widget(form.genre_2) }}
+            </div> 
+            <div>  
+              <label for="{{ form.genre_3.vars.id }}">{{ form.genre_3.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.genre_3) }}
+      {{ form_widget(form.genre_3) }}
+            </div> 
+            <div>  
+              <label for="{{ form.genre_4.vars.id }}">{{ form.genre_4.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.genre_4) }}
+      {{ form_widget(form.genre_4) }}
+            </div> 
+            <div>  
+              <label for="{{ form.genre_5.vars.id }}">{{ form.genre_5.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.genre_5) }}
+      {{ form_widget(form.genre_5) }}
+            </div> 
+          </div>
+
+          <div class="customization_part">
+            <h3>{{ 'user_customization_publishers' |trans({}, 'SansPapierUserDataBundle') }}</h3>
+            <div class="user_customization_decriptions">{{ 'user_customization_publishers_description' |trans({}, 'SansPapierUserDataBundle') }}</div>
+            <div>  
+              <label for="{{ form.publisher_1.vars.id }}">{{ form.publisher_1.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.publisher_1) }}
+      {{ form_widget(form.publisher_1) }}
+            </div>  
+            <div>  
+              <label for="{{ form.publisher_2.vars.id }}">{{ form.publisher_2.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.publisher_2) }}
+      {{ form_widget(form.publisher_2) }}
+            </div>  
+            <div>  
+              <label for="{{ form.publisher_3.vars.id }}">{{ form.publisher_3.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.publisher_3) }}
+      {{ form_widget(form.publisher_3) }}
+            </div>  
+            <div>  
+              <label for="{{ form.publisher_4.vars.id }}">{{ form.publisher_4.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.publisher_4) }}
+      {{ form_widget(form.publisher_4) }}
+            </div>  
+            <div>  
+              <label for="{{ form.publisher_5.vars.id }}">{{ form.publisher_5.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.publisher_5) }}
+      {{ form_widget(form.publisher_5) }}
+            </div> 
+          </div>          
+
+          <div class="customization_part">
+            <h3>{{ 'user_customization_keywords' |trans({}, 'SansPapierUserDataBundle') }}</h3>
+            <div class="user_customization_decriptions">{{ 'user_customization_keywords_description' |trans({}, 'SansPapierUserDataBundle') }}</div>
+            <div>  
+              <label for="{{ form.search_1.vars.id }}">{{ form.search_1.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.search_1) }}
+      {{ form_widget(form.search_1) }}
+            </div> 
+
+            <div>  
+              <label for="{{ form.search_2.vars.id }}">{{ form.search_2.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.search_2) }}
+      {{ form_widget(form.search_2) }}
+            </div> 
+
+            <div>  
+              <label for="{{ form.search_3.vars.id }}">{{ form.search_3.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.search_3) }}
+      {{ form_widget(form.search_3) }}
+            </div> 
+
+            <div>  
+              <label for="{{ form.search_4.vars.id }}">{{ form.search_4.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.search_4) }}
+      {{ form_widget(form.search_4) }}
+            </div> 
+
+            <div>  
+              <label for="{{ form.search_5.vars.id }}">{{ form.search_5.vars.id |trans({}, 'SansPapierUserDataBundle') }}:</label>
+      {{ form_errors(form.search_5) }}
+      {{ form_widget(form.search_5) }}
+            </div> 
+
+
+          </div>
+          
+ 
+          <div>
+            {{ form_widget(form._token) }}
+              <input type="submit" id="_submit" name="_submit" value="{{ 'customization.submit'|trans({}, 'FOSUserBundle') }}" />
+              <img id="{{form.vars.id}}_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+              <span id="{{ form.vars.id }}_confirmed" class="confirmed"></span>
+            </div>
+          </form>
+         <!-- <script type="text/javascript" src="{{ asset('js/jquery-ui-1.8.23.custom.min.js')}}"></script> -->
+          <script>
+          (function () {
+
+    $('#{{form.vars.id}}_load_anim')
+        .hide();
+
+    var form_id = '{{form.vars.id}}';
+    $('#' + form_id)
+        .submit(function (evt) {
+        evt.preventDefault(); // very important, it bypass the form submission mecanism
+
+        SPFormMapper.removeErrorElements(form_id);
+        SPFormMapper.createErrorElements(form_id);
+
+        $('#' + form_id + '_load_anim')
+            .show(); // show the wheel, to tells that ajax is working here
+        var serialized_data = $(this)
+            .serialize(); // serialize the form post data, very easy and convenient;
+        $.post('{{ path('sanspapier_userpreferences_customization_update') }}', serialized_data, function (response) {
+            $('#' + form_id + '_load_anim')
+                .hide(); // okay, ajax request is over.
+            //check if form is valid
+            if (!response.status) { // not valid
+                SPFormMapper.displayErrors(form_id, response.valid_errors);
+                $('#' + form_id + '_confirmed')
+                    .empty();
+            } else { // valid
+                $('#' + form_id + '_confirmed')
+                    .html('{{ 'profile.flash.updated'|trans({}, 'FOSUserBundle') }}');
+                get_available_choices();
+            }
+        });
+    });
+
+    var autocomp_ids = ['{{form.publisher_1.vars.id}}', '{{form.publisher_2.vars.id}}', '{{form.publisher_3.vars.id}}', '{{form.publisher_4.vars.id}}', '{{form.publisher_5.vars.id}}'];
+
+    var genre_ids = ['{{form.genre_1.vars.id}}', '{{form.genre_2.vars.id}}', '{{form.genre_3.vars.id}}', '{{form.genre_4.vars.id}}', '{{form.genre_5.vars.id}}'];
+
+    var search_ids = ['{{form.search_1.vars.id}}', '{{form.search_2.vars.id}}', '{{form.search_3.vars.id}}', '{{form.search_4.vars.id}}', '{{form.search_5.vars.id}}'];
+
+
+    function set_genres(source, ids) {
+        // the null val
+        for (var i = 0; i < ids.length; i++) {
+            $("select#" + ids[i]).empty();
+            $("select#" + ids[i]).append(
+                $('<option></option>')
+                    .val('')
+                    .html(''));
+            $.each(source, function (idx, text) {
+                $("select#" + ids[i])
+                    .append(
+                $('<option></option>')
+                    .val(text)
+                    .html(text));
+            });
+        }
+    }
+
+    function set_autocomplete(source, ids) {
+
+        for (var i = 0; i < ids.length; i++) {
+            $("input#" + ids[i])
+                .autocomplete({
+                source: source
+            });
+        }
+    }
+
+    function get_user_customization() {
+        $.ajax({
+            url: '{{ path('sanspapier_userpreferences_customization_get') }}',
+            data: [],
+            success: function (data) {
+                var pubs = data.data.publishers;
+                var genres = data.data.genres;
+                var searches = data.data.searches;
+                //pubs clear
+                $(autocomp_ids)
+                    .each(function (idx, elem) {
+                    $("#" + elem)
+                        .val('');
+                });
+                //pubs fill
+                $(pubs)
+                    .each(function (idx, elem) {
+                    $("#" + autocomp_ids[idx])
+                        .val(elem)
+                        .text(elem);
+                });
+                //genres clear
+                $(genre_ids)
+                    .each(function (idx, elem) {
+                    //attr("selected",
+                    var opts = $("#" + elem)
+                        .children();
+                    if (typeof genres !== "undefined") {
+                        var genre = genres[idx];
+                        if (typeof genres[idx] !== "undefined") {
+                            opts.each(function (idx, elem) {
+                                if (genre == $(elem)
+                                    .val()) {
+                                    $(elem)
+                                        .attr("selected", true);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                // search clear
+                $(search_ids)
+                    .each(function (idx, elem) {
+                    $("#" + elem)
+                        .val('');
+                });
+                // search fill
+                $(searches)
+                    .each(function (idx, elem) {
+                    $("#" + search_ids[idx])
+                        .val(elem)
+                        .text(elem);
+                });
+            }
+        });
+    }
+
+    function get_available_choices() {
+        //sanspapier_userpreferences_get_publishers
+        $.ajax({
+            url: '{{ path('sanspapier_userpreferences_get_publishers') }}',
+            data: [],
+            success: function (data) {
+                var src = [];
+                for (var i = 0; i < data.data.length; i++) {
+                    src.push(data.data[i]["name"]);
+                }
+                set_autocomplete(src, autocomp_ids);
+            }
+        });
+
+        $.ajax({
+            url: '{{ path('sanspapier_userpreferences_get_genres') }}',
+            data: [],
+            success: function (data) {
+                var src = [];
+                for (var i = 0; i < data.data.length; i++) {
+                    src.push(data.data[i]["name"]);
+                }
+                set_genres(src, genre_ids);
+
+                // here we can call what user entered because we got everything about genres           
+                get_user_customization();
+            }
+        });
+    }; // end get choices
+
+    // launch ajax sequence
+    get_available_choices();
+
+
+})();  
+          </script>
+            <!-- REMOVE AFTER -->
+        <!--    
+        </body>
+
+      </html>
+        -->

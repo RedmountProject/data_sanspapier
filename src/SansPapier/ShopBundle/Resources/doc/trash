@@ -1,0 +1,75 @@
+/**
+   * @Route("/test.{_format}",  name="test_test", defaults={"_format" = "json"})
+   * @View()
+   */
+  public function testThingsAction()
+  {
+    $em_shop = $this->container->get('doctrine')->getEntityManager("shop");
+    $em_user = $this->container->get('doctrine')->getEntityManager("user");
+    $user = $em_user->getRepository('SansPapierUserDataBundle:User')->findOneBy(array("user_id" => 1));
+    $json_test = '{"orderLines":[{"glnDistributor":"3012410001000","links":[{"format":"E101","url":"https://hub-test.centprod.com/v1//link/3025594309107/139231/9782820502483-3012410001000/4715-8125-MDN9L7ADNWNYQPQ18ROWBBUVWP4LONBK.do","ean13":"9782820502483","mimetype":"application/epub+zip","formatDescription":"EPUB"}],"ean13":"9782820502483","lineReference":"2","orderLineId":"4715","returnStatus":"OK"}],"orderId":"139231","returnStatus":"OK"}';
+    $json = json_decode($json_test, true);
+    if ($json['returnStatus'] == "OK")
+    {
+      $order_lines = $json['orderLines'];
+      foreach ($order_lines as $line)
+      {
+        $shelf = new ProductShelf();
+        $shelf->setTransactionAt(new \DateTime('now'));
+        $shelf->setUser($user);
+
+        $links = $line['links'];
+        foreach ($links as $link)
+        {
+          $transaction = $em_shop->getRepository('SansPapierShopBundle:Transaction')->findOneBy(array("external_id" => $link['ean13']));
+          $shelf->setProductIdSolr($transaction->getProductIdSolr());
+          $lnk = new ProductLink();
+          $lnk->setUrl($link['url']);
+          $shelf->addProductLink($lnk);
+        }
+      }
+    }
+    exit();
+  }
+
+
+
+
+
+
+
+  /**
+   * @Route("/response.{_format}",  name="sanspapier_secure_response", defaults={"_format" = "json"})
+   * @View()
+   */
+  public function responseAction()
+  {
+    //request
+    $request = $this->container->get('request');
+    $crypted_data = $request->request->get('DATA');
+    $response = $this->doPost($this->container->getParameter('sans_papier_shop.socgen.decoder'), "ENC=" . $crypted_data);
+    $resarr = explode("|", $response);
+    $params = $this->parseSocGenResponse($resarr);
+
+    //get back the operation thnx to the transaction id;
+    $em = $this->container->get('doctrine')->getEntityManager("shop");
+    $repo = $em->getRepository('SansPapierShopBundle:Operation');
+    $operation = $repo->findOneBy(array('socgen_transaction_id' => $params['transaction_id']));
+
+
+    if ($operation->getStatus() == 3) // paiement done and dilicom transaction done
+    {
+      return new RedirectResponse(
+        $this->container->getParameter('sans_papier_shop.redirect.transaction_success.protocol') .
+        "://" .
+        $operation->getFromWebsite() .
+        $this->container->getParameter('sans_papier_shop.redirect.transaction_success.url')
+      );
+    }
+    return new RedirectResponse(
+      $this->container->getParameter('sans_papier_shop.redirect.transaction_fail.protocol') .
+      "://" .
+      $operation->getFromWebsite() .
+      $this->container->getParameter('sans_papier_shop.redirect.transaction_fail.url')
+    );
+  }

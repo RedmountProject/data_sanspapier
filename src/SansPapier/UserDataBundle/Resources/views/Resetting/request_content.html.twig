@@ -1,0 +1,40 @@
+<form action="{{ path('sanspapier_resetting_send_email') }}" method="POST" id="fos_user_resetting_request">
+    <div>
+  
+        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="text" id="username" name="username" />
+    </div>
+    <div>
+        <input type="submit" id="reset_password" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+        <img id="fos_user_resetting_request_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+    </div>
+</form>
+
+<script type="text/javascript">
+(function(){  
+  // store the form id
+  var form_id = 'fos_user_resetting_request';
+  // hide the ajax loader animation  
+  $('#'+form_id+'_load_anim').hide();
+   // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+  $('#'+form_id).submit(function(evt){ 
+      evt.preventDefault(); // very important, it bypass the form submission mecanism
+      
+      SPFormMapper.removeErrorElements(form_id);
+      SPFormMapper.createErrorElements(form_id);
+      
+      $('#'+form_id+'_load_anim').show(); // show the wheel, to tells that ajax is working here
+      var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+      $.post('{{ path('sanspapier_resetting_send_email') }}', serialized_data, function(response){
+        $('#'+form_id+'_load_anim').hide(); // okay, ajax request is over.
+        //check if form is valid
+        if(!response.status){ // not valid
+           SPFormMapper.displayErrors(form_id, response.valid_errors);
+        }else{ // valid
+          SPFormMapper.replaceForm(form_id, response.message);
+        }
+      });
+  }); 
+  
+})();
+</script> 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" /></meta>
+    <title> Sanspapier.com - Librairie numérique et moteur de recommandation</title>
+    <meta name="description" content="Sanspapier.com, moteur de recommandation pour le livre numérique. Découvrez notre offre éditoriale et flânez sur les tables de la librairie! Trouvez et téléchargez les ebooks qui vous intéressent."></meta>
+  </head>
+  <body>
+
+{% for col in data %}
+  <div itemscope itemtype="http://data-vocabulary.org/Product">  
+  <h1>{{ col[0] }}</h1>
+  {% for book in col[1] %}
+  <h2 itemprop="name"><a href="{{path('sheet', { 'pProductId': book.product_id } )}}.html">{{ book.title }}</a></h2>
+    <h3>Editeur: {{ book.publisher_name }}</h3>
+    <h3>Auteur(s):</h3>
+     {% for name in book.author_lastname %}
+    <p>{{name}}</p>
+     {% endfor %}
+    <img itemprop="image" alt="{{book.title}}" title="{{book.title}}" src="{{host}}/images/books/{{book.publisher_id}}/{{book.product_id}}/{{book.product_id}}_fc_B.jpg"></img>
+    <div>
+      <h4>Description:</h4>
+      <p itemprop="description">{{ book.description |raw }}</p>
+      <meta itemprop="currency" content="EUR" />
+      Prix:<p itemprop="price">
+      {% if book.WO_EUR_TTC_c is not null %}
+          {{ book.WO_EUR_TTC_c}} €
+      {% else %}
+          {{ book.FR_EUR_TTC_c}} €
+      {% endif %}
+      </p>
+      <p>{{book.nb_pages}} Pages</p>
+    </div>
+  </div>  
+  {% else %}
+  {% endfor %}
+  
+{% else %}
+    <p>No category have been found.</p>
+{% endfor %}
+</body>
+</html>

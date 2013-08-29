@@ -1,0 +1,137 @@
+# Group
+group:
+    edit:
+        submit: Mettre à jour le groupe
+    show:
+        name: Nom du groupe
+    new:
+        submit: Créer le groupe
+    flash:
+        updated: Le groupe a été mis à jour
+        created: Le groupe a été créé
+        deleted: Le groupe a été supprimé
+
+# Security
+security:
+    loggin_failed: Mot de passe ou adresse e-mail invalide.
+    login:
+        username: "Entrez votre adresse e-mail :"
+        password: "Entrez votre mot de passe :"
+        remember_me: Se souvenir de moi
+        submit: Connectez-vous
+
+# Profile
+profile:
+    show:
+        username: Nom d'utilisateur
+        email: Adresse e-mail
+    edit:
+        submit: Enregistrer la mise à jour
+    flash:
+        updated: Le profil a été mis à jour
+
+# customization
+customization:
+  submit: Enregistrer mes préférences
+
+# Password change
+change_password:
+    submit: Enregistrer mon nouveau mot de passe
+    flash:
+        success: Le mot de passe a été modifié
+
+# Registration
+registration:
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Pour confirmer votre inscription, veuillez suivre les instructions qui vous y sont indiquées.
+    confirmed: Félicitations, votre compte est désormais activé. Vous pouvez profiter pleinement de sanspapier.com !
+    back: Retour à la page d'origine.
+    submit: Créez votre compte
+    flash:
+        user_created: L'utilisateur a été créé avec succès
+    email:
+        subject: Confirmation de votre inscription sur sanspapier.com
+        message: |
+            Bonjour,
+            
+            Merci de vous être inscrit sur sanspapier.com avec l’adresse %email%. Pour valider votre compte utilisateur, rendez-vous sur : 
+
+            %confirmationUrl%
+            
+            Vous pourrez mettre à jour vos coordonnées personnelles dans l’onglet "Infos perso". Elles nous seront nécessaires lorsque vous effectuerez un achat.
+
+            Vous retrouverez vos achats dans l’onglet "Mes achats" juste à côté.
+
+            Encore un peu à droite, vous trouverez l’onglet "Préférences". Vous pourrez choisir parmi une sélection d’éditeurs et de genres ceux dont vous désirez suivre l’actualité. En revenant sur la page d’accueil, de nouveaux onglets apparaîtront avec ces préférences. De la même manière vous pourrez suivre l’actualité de vos sujets favoris en sélectionnant les mots-clés caractéristiques qui s’y rapportent. Dans l’onglet qui apparaîtra sur la page d’accueil, vous trouverez une sélection de titres caractérisés par ces mots-clés.
+
+            Bonne navigation,
+
+            L'équipe de sanspapier.com
+
+# Password resetting
+resetting:
+    password_already_requested: Vous avez effectué une demande de réinitialisation de mot de passe dans les dernières 24 heures. Vous pourrez bientôt refaire une demande de réinitialisation.
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Veuillez suivre les instructions qui vous y sont indiquées.
+    request:
+        invalid_username: Aucun compte avec l'adresse e-mail "%username%" n'existe. Veuillez modifier votre saisie.
+        username: "Entrez votre adresse e-mail :"
+        submit: Réinitialisez votre mot de passe
+    reset:
+        submit: Modifier le mot de passe
+    flash:
+        success: Votre mot de passe a été réinitialisé avec succès.
+    email:
+        subject: Réinitialisation de votre mot de passe !
+        message: |
+            Bonjour !
+
+            Pour réinitialiser votre mot de passe, merci de cliquer sur le lien suivant: %confirmationUrl%
+
+            A très bientôt,
+            
+            L'équipe de sanspapier.com.
+
+
+# Global strings
+layout:
+    logout: Déconnexion
+    login: Connexion
+    register: Enregistrer
+    logged_in_as: Connecté en tant que %email%
+
+# Form field labels
+fos_user_group_form_name: "Nom du groupe :"
+
+fos_user_profile_form_username:             "Nom d'utilisateur :"
+fos_user_profile_form_email:                "E-mail :"
+fos_user_profile_form_plainPassword_first:  "Mot de passe :"
+fos_user_profile_form_plainPassword_second: "Vérification :"
+
+fos_user_registration_form_username:             "Nom d'utilisateur :"
+fos_user_registration_form_email:                "E-mail :"
+fos_user_registration_form_plainPassword_first:  "Mot de passe :"
+fos_user_registration_form_plainPassword_second: "Vérification :"
+
+fos_user_resetting_form_new_first:  "Nouveau mot de passe :"
+fos_user_resetting_form_new_second: "Vérification :"
+
+fos_user_change_password_form_new_first:    "Nouveau mot de passe :"
+fos_user_change_password_form_new_second:   "Vérification :"
+fos_user_change_password_form_current:  "Mot de passe actuel :"
+
+# Sans Papier Field Labels
+#user_preferences
+sanspapier_userdatabundle_usertype_email: "E-mail :"
+sanspapier_userdatabundle_usertype_preference_firstname: "Prénom :"
+sanspapier_userdatabundle_usertype_preference_lastname: "Nom :"
+sanspapier_userdatabundle_usertype_preference_notifiable: "Je souhaite recevoir des offres et informations de la part de Sanspapier.com"
+
+#billing address
+sanspapier_userdatabundle_usertype_preference_billing_address_addressee: "Nom et prénom :"
+sanspapier_userdatabundle_usertype_preference_billing_address_company_name: "Société :"
+sanspapier_userdatabundle_usertype_preference_billing_address_address: "Adresse :"
+sanspapier_userdatabundle_usertype_preference_billing_address_complement: "Complément :"
+sanspapier_userdatabundle_usertype_preference_billing_address_city: "Ville :"
+sanspapier_userdatabundle_usertype_preference_billing_address_zip: "Code Postal :"
+sanspapier_userdatabundle_usertype_preference_billing_address_country_code: "Pays :"
+
+

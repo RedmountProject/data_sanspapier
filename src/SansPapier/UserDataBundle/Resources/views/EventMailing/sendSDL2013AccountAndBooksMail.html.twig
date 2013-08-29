@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+    <head>
+        <base href="http://www.sanspapier.com"></base>
+        <meta charset="UTF-8" ></meta>
+        <link href="http://www.sanspapier.com/css/mailing/reset.css" type="text/css" rel="stylesheet" />
+        <link href="http://www.sanspapier.com/css/mailing/grid_system.css" type="text/css" rel="stylesheet" />
+        <link href="http://www.sanspapier.com/css/mailing/orders_twig_template.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body style="font-family: Arial; font-size: 12px; color:#333;">
+        <div class="container_5" id="main_content" style="position: relative; float: left; margin-left: auto; margin-right: auto; margin-bottom: 20px; width: 960px; border: 1px solid #E9E8E0; padding: 20px;">
+            <div class="grid_5 container" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px; width:932px;">
+                
+                <img id="logo" src="http://www.sanspapier.com/images/mailing/Logo_nomSP.png" alt="Example" style="position: relative; float: left;"/>
+                
+                <h2 style="font-weight: bold; font-size: 18px; position: relative; float: right;">Salon du Livre 2013</h2>
+            </div>
+            <div class="grid_5 container" style="display:inline; float: left; position: relative; margin-left: 10px; margin-right: 10px; margin-top:10px; border-bottom: 2px solid #E9E8E0; padding-bottom: 20px; width:932px;">
+                <p>
+                    <span style="font-size: 14px;">Bonjour,</span><br/><br/>
+                    Suite à notre rencontre au Salon du Livre 2013, nous vous confirmons la création de votre compte sur <a href="http://www.sanspapier.com">www.sanspapier.com</a>.<br/><br/>
+                    Nous vous invitons à vous <a href="http://www.sanspapier.com">rendre sur la librairie</a> et à vous connecter avec les identifiants suivants:<br />
+                    <b>E-mail:</b> {{ user_mail }}<br/>
+                    <b>Mot de passe:</b> {{ password }}<br /> (n'hésitez pas à changer votre mot de passe dès que possible via le formulaire "Modifier mon mot de passe" dans l'onglet "Mes infos perso" de votre espace personnel).<br /><br/>
+                    Vous pouvez dès à présent <b>retrouver</b> et <b>télécharger</b> les livres du domaine public que vous avez choisis sur notre stand de la manière suivante:<br />
+                    Une fois connecté et arrivé dans votre espace personnel, cliquez sur l'onglet "Mes achats", vous pourrez télécharger vos livres en cliquant sur les liens "EPUB" et "PDF" (ces fichiers sont sans DRM).<br /><br />
+                    Enfin, nous vous confirmons votre participation au concours sanspapier.com dont le tirage au sort aura lieu demain.<br />
+                    Maintenant, faites vos premiers pas dans la librairie ! N'hésitez pas à paramétrer votre compte (onglet "Mes préférences") afin de profiter, depuis la page d'accueil du site, d'un suivi régulier des éditeurs, genres et thèmes qui vous intéressent !<br /><br />
+                    A très bientôt,<br />
+                    L'équipe de sanspapier.com
+                </p>
+            </div>
+            <div class="container grid_5" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px;">
+                
+                <img id="group_image" src="http://www.sanspapier.com/images/mailing/group_noir.png" alt="Example" style="position: relative; float: left; margin-left: 390px;"/>
+                
+                <p id="inline_help" style="position: relative; float: left; width: 60%; margin-left: 20%; text-align: center;">
+                    S'il vous reste des questions, n'hésitez pas à consultez notre <a href="http://www.sanspapier.com/aide_en_ligne.php">aide en ligne</a> ou à contacter notre équipe via notre <a href="http://www.sanspapier.com/a_propos.php#contact">formulaire de contact</a>.
+                </p>
+            </div>
+            <div class="container grid_5" id="social" style="display:inline; float: left; position: relative; width:932px; margin-left: 10px; margin-right: 10px; margin-top:10px;">
+                <div id="social_contacts" style="background: #E9E8E0; height: 40px; margin: 0; margin-top: 10px;">
+                    <span style="position: relative; float: left; margin-left: 20px; line-height: 40px; vertical-align: central;">Retrouvez sanspapier.com sur Facebook et Twitter : 
+                    </span>
+                   <a href="http://www.facebook.com/pages/Sanspapiercom/322993334441560" style="cursor: pointer; position: relative; float: left; margin:0; margin-top: 5px; margin-left:10px;"><img style="position: relative; float: left;" id="fb" src="http://www.sanspapier.com/images/mailing/iconefbblog_blanc.png" alt=""/></a>
+                    <a href="https://twitter.com/Sanspap" style="cursor: pointer; position: relative; float: left; margin:0; margin-top: 5px; margin-left:10px;"><img style="position: relative; float: left;" id="tw" src="http://www.sanspapier.com/images/mailing/iconetwtblog_blanc.png" alt=""/></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

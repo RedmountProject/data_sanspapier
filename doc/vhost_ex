@@ -1,0 +1,42 @@
+<VirtualHost _default_:80>
+        ServerName www.grammezero.com
+        #ServerAlias www.grammezero.com
+        DocumentRoot /var/www/front_sanspapier/html4
+        Header set Access-Control-Allow-Origin *
+
+        RewriteEngine on
+
+        #RewriteRule ^/search\.html\?_escaped_fragment_=main$  http://www.grammezero.com/data/app.php/books/columns.html [NC,R=3$
+
+        RewriteCond %{QUERY_STRING} ^_escaped_fragment_=main$
+        RewriteRule (.*) http://www.grammezero.com/data/app.php/books/columns.html? [NC,R=301]
+	
+	RewriteCond %{QUERY_STRING} ^_escaped_fragment_=booksheet\|(.+)$
+        RewriteRule (.*) http://www.grammezero.com/data/app.php/books/sheet_%1.html? [NC,R=301]
+	
+        RewriteCond %{HTTP_HOST} ^www\.grammezero\.com$
+        RewriteRule ^/$ /search.html#!main [R=301,L,NE]
+
+        RewriteCond %{HTTP_HOST} ^grammezero\.com
+        RewriteRule ^(.*)$ http://www.grammezero.com$1 [R=301,L]
+
+        Alias /data "/var/www/data_sanspapier/web"
+        <Directory "/var/www/data_sanspapier/web">
+           DirectoryIndex index.html
+           Options -Indexes FollowSymLinks MultiViews
+           AllowOverride All
+           Order allow,deny
+           Allow from all
+        </Directory>
+
+        Alias /html4 "/var/www/front_sanspapier/html4"
+        <Directory /var/www/front_sanspapier/html4 >
+           DirectoryIndex search.html
+           Options -Indexes FollowSymLinks MultiViews
+           AllowOverride None
+           Order allow,deny
+           allow from all
+        </Directory>
+
+        CustomLog ${APACHE_LOG_DIR}/sanspap_front_access.log combined
+</VirtualHost>

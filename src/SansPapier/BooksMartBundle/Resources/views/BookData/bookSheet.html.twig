@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    {% for elem in result %}
+        <title>Télécharger l'ebook gratuit "{{elem.title}}"&nbsp;
+        {% for name in elem.author_lastname %}
+            {% if loop.first %}
+                ({{name}}) -&nbsp;
+            {% endif %}
+        {% endfor %}
+        {% for format in elem.format_name %}
+            {% if loop.first %}
+                {{ format| truncate(4, false, '') | trim('_') }}
+            {% endif %}
+        {% endfor %}
+        </title>
+        <meta name="description" content="Sanspapier.com - Ebook gratuit - {{elem.title}} - Télécharger gratuitement l'ebook sur notre librairie numérique - Description : {{elem.description|striptags}}"/>
+    {% endfor %}
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    {% for elem in result %}
+        <div itemscope itemtype="http://schema.org/Book">
+            <h1 itemprop="name">
+                {{elem.title}} - ebook au format 
+                <link itemprop="bookFormat" href="http://schema.org/EBook">
+                {% for format in elem.format_name %}
+                    {% if loop.first %}
+                        {{ format| truncate(4, false, '') | trim('_') }}&nbsp;
+                    {% endif %}
+                {% endfor %}
+            </h1>
+            <h2>
+                Auteur(s):
+                {% for name in elem.author_lastname %}
+                    <span itemprop="author">{{name}}</span>
+                {% endfor %}
+            </h2>
+            <h3 itemprop="publisher">Editeur: {{ elem.publisher_name }}</h3>
+            <div>
+                Téléchargez cet ebook gratuit sur la librairie numérique <strong>sanspapier.com</strong>
+            </div>
+            <img itemprop="image" alt="{{elem.title}}" title="{{elem.title}}" src="{{host}}/images/books/{{elem.publisher_id}}/{{elem.product_id}}/{{elem.product_id}}_fc_B.jpg"></img>
+            <div>
+            <h4>Description:</h4>
+            <p itemprop="description">{{ elem.description |raw }}. Sanspapier.com est une librairie numérique pour les ebooks gratuits du domaine public. Son moteur de recommandation vous permettra de découvrir de nouveaux livres.</p>
+            <meta itemprop="priceCurrency" content="EUR" />
+            Prix: 
+            <p itemprop="price">0,00 €</p>
+        </div>
+    {% endfor %}
+    <h2>Du même auteur:</h2>
+    {% for elem in sameAuthor %}
+        <p><a href="{{host}}/search.php#!booksheet_{{elem.product_id}}">Fiche Livre {{elem.product_id}}</a></p>
+    {% endfor %} 
+    </div>
+  </body>
+</html>  

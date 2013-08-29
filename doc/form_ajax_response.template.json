@@ -1,0 +1,12 @@
+​{
+    "status": true, // if true, the process for what the form was intended successfuly executed
+                    // if false, an error occured (often validation form error(s)), but can be any error
+    "message": "result message", // success message if status is true, error message instead.
+    "redirection":"url", // if redirection is needed to be handled javascriptside
+    "valid_errors": [ // specific to forms, this is validation errors
+      {"property":"property name (empty for global errors)", "message":"translated error message"}, // to retrieve the field name where the error occured
+      {"property":"property name", "message":"translated error message"}
+      // ...
+    ], 
+    "data": {}//...
+}​

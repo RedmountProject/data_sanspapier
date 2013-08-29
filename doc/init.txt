@@ -1,0 +1,17 @@
+######  
+######  PROCEDURE INSTALL SYMFONY DATA.SANSPAPIER.COM (Mac OSX)
+######
+
+1 - Installer MAMP 2.0, verifier php 5.3.6
+  - verifier que php en mode console tape bien sur le ini de MAMP
+  - voir ici si erreur de driver pdo_mysql: http://blog.jchristophe.fr/post/Symfony-2-sous-Mac-OS-X-avec-MAMP
+2 - Installer GIT par le package OSX dispo sur google code
+3 - svn co svn://url_to_svn/home/svn/REPOsanspapier/data_sanspapier /path/to/www/data_sanspapier
+4 - cd /path/to/www/data_sanspapier
+5 - creer app/config/parametters.ini (bien le creer, pas copier coller renommer)
+6 - appliquer un svn ignore sur le parametters.ini : svn propset svn:ignore "parameters.ini" app/config/
+7 - dans le /Applications/MAMP/bin/php/php5.3.6/conf/php.ini, passer memory_limit = 256M 
+8 - lancer une re-install des vendors avec : php bin/vendors install
+9 - php app/console doctrine:database:create pour construire les bases
+  - ca pose probleme car symfony cree la base en latin_swedish au debut, solution: en manuel, avec utf8_general_ci
+10 - update le schema: php app/console doctrine:schema:update --force

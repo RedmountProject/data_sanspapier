@@ -1,0 +1,160 @@
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+           
+    mail_helper:
+       class: SansPapier\UserDataBundle\Model\MailHelper
+       arguments: ['@mailer', '@templating']
+
+
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    charset:         UTF-8
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:
+        #domain: .grammezero.com
+        default_locale: %locale%
+        auto_start:     true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+      connections:
+        user:
+          driver:   %user_db_driver%
+          host:     %user_db_host%
+          port:     %user_db_port%
+          dbname:   %user_db_name%
+          user:     %user_db_user%
+          password: %user_db_password%
+          charset:  UTF8
+        
+        shop:  
+          driver:   %shop_db_driver%
+          host:     %shop_db_host%
+          port:     %shop_db_port%
+          dbname:   %shop_db_name%
+          user:     %shop_db_user%
+          password: %shop_db_password%
+          charset:  UTF8
+        
+        source:  
+          driver:   %source_db_driver%
+          host:     %source_db_host%
+          port:     %source_db_port%
+          dbname:   %source_db_name%
+          user:     %source_db_user%
+          password: %source_db_password%
+          charset:  UTF8  
+
+    orm:
+        default_entity_manager:   user
+        entity_managers:
+            user:
+                connection:       user
+                mappings:
+                  SansPapierUserDataBundle: ~
+                  FOSUserBundle: ~
+
+            shop:
+                connection:       shop
+                mappings: 
+                  SansPapierShopBundle: ~
+
+        #auto_generate_proxy_classes: %kernel.debug%
+        #auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+jms_security_extra:
+    secure_controllers:  true
+    secure_all_services: false
+
+fos_user:
+    db_driver: orm 
+    firewall_name: fos_user
+    user_class: SansPapier\UserDataBundle\Entity\User
+    service:
+      user_manager: sans_papier_user_data.user_manager
+    from_email:
+        address:        info@sanspapier.com
+        sender_name:    SansPapier.com
+    change_password:
+        form:
+            type: sans_papier_user_data_change_password
+            handler: sans_papier_user_data.change_password.form.handler
+    registration:
+        confirmation:
+            enabled:    true  
+        form:
+            type: sans_papier_user_data_registration
+            handler: sans_papier_user_data.registration.form.handler
+            
+ # app/config/config.yml
+fos_rest:
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+            rss: true
+            xml: true
+            yml: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        
+    format_listener:
+        default_priorities: ['json', html, '*/*']
+        fallback_format: json
+        prefer_extension: true    
+
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }           
+            
+nelmio_solarium:
+    adapter:
+        class: Solarium_Client_Adapter_Http
+        host: 192.168.1.7
+        port: 8983
+        path: /solr
+        cores: ~
+        timeout: 5

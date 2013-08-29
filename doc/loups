@@ -1,0 +1,86 @@
+### Documentation des "loups" dans la bergerie.
+
+### Global config.
+
+- Faire attention au parametters.ini qui est en svn ignore. Dedans paramettrage des SQL.
+- Une command symfony a ete ajouter pour l'omport des editeurs et des genres dans la base userdata.
+  Ne pas hesiter a modifier son fonctionnement pour matcher d'autres tables.
+  - la classe se trouve dans : 
+    /data_sanspapier/src/SansPapier/UserDataBundle/Command/SourceImportCommand.php
+
+### UserDataBundle
+    - rien de specialement sale ici.
+    - beaucoup d'overrides du userbundle.
+
+### Socgen et ### Transactions
+- Le fonctionnement:
+  J'ai refait la couche PHP de l'API socgen en symfony dans le TransactionController.
+  En gros:
+  -> requestAction
+    permet de faire la requette pour avoir acces au choix des cartes de credit.
+    ca affiche une liste de carte, au click on part chez sogen pas le choix.
+  -> responseAction 
+     quand on clique sur retour a la boutique chez socgen, on tombe la dessus. 
+     normalement chez nous on sait deja l'etat de la transaction car le server socgen appel aresponse.
+  -> aresponseAction
+     la plus critique, elle est directe appele par socgen pour confirmer / infirmer le paiement.
+     il doit etre accessible de l'exterieur.
+     WARNING: code en dur pour l'instant ligne 86. il va falloir remove l'IP de merde et mettre le dernier param (absolute URL) a TRUE
+     si la reponse est ok "code 00", on appele processDistributor pour faire le dilicom stuff.
+  - Logs: 
+      comme aresponse est appelee depuis le server de paiement socgen, on peux pas directement voir le deroulement des operations.
+      Il y a un log dans app/sp_logs/soc_gen.log
+      Il faudra peu etre le virer en prod.
+     
+
+- Socgen c'est un peu la merde, en gros:
+  - Il il a deux binaires (request et response) qui tournes sur du Linux 64 ou 32 mais pas mac.
+    Ces deux binaires viennet avec des fichier de conf pourrav: 
+    (certif.fr.014213245611111.php  certif.fr.014213245611112.php  parmcom.014213245611111  parmcom.sogenactif  pathfile) 
+  - Il faut bien verifier les paths dans le "pathfile" et dans "parmcom.014213245611111".
+  - pour exploiter ces binaires, il y a deux fichiers de proxy PHP qui sont utilise dans le controlleur ShopBundle:TransactionController
+  - decoder.php et proxy.php qui doivent se trouver dans var/www/socgen/
+  - bien verifier les path aussi la dedans.
+  - le controlleur ShopBundle:TransactionController est configure avec des variables dans le services.xml du bundle
+  - il faut bien verifier que le proxy.php et le decodeur.php sont accessibles depuis le controlleur en POST.
+  - les vars dans data_sanspapier/src/SansPapier/ShopBundle/Resources/config/services.xml :
+    - La config Solr, pas de surprise. Elle sert a remonter les books etc ..
+
+    - la conf socgen:
+        // addresse du proxy (qui est appele a la request de paiement).
+        <parameter key="sans_papier_shop.socgen.proxy">http://socgen.sanspapier.com/proxy.php</parameter>
+        // addresse du decoder (qui est appele a la response de paiement).
+        <parameter key="sans_papier_shop.socgen.decoder">http://socgen.sanspapier.com/decoder.php</parameter>
+        // le merchant ID, ici c'est celui de test demo la
+        <parameter key="sans_papier_shop.socgen.merchant_id">"014213245611111"</parameter><!-- quotes because it have to be string param -->
+        // Country Code du merchant, laisser FR
+        <parameter key="sans_papier_shop.socgen.merchant_country">fr</parameter>
+        // currency code 978 pour l'euro
+        <parameter key="sans_papier_shop.socgen.currency_code">978</parameter>
+
+    - la conf de redirection en cas de succes et d'echec :   
+        // il faudra changer en HTTPS car le tunnel d'achat devra etre en https
+        <parameter key="sans_papier_shop.redirect.transaction_success.protocol">http</parameter>
+        // a terme il faudra virer "/front_sanspapier/html4" car normalement ca sera direct accessible sur www.sanspapier.com
+        <parameter key="sans_papier_shop.redirect.transaction_success.url">/front_sanspapier/html4/shop.html?confirmed=true</parameter>
+        // il faudra changer en HTTPS car le tunnel d'achat devra etre en https
+        <parameter key="sans_papier_shop.redirect.transaction_fail.protocol">http</parameter>
+        // a terme il faudra virer "/front_sanspapier/html4" car normalement ca sera direct accessible sur www.sanspapier.com
+        <parameter key="sans_papier_shop.redirect.transaction_fail.url">/front_sanspapier/html4/shop.html?confirmed=false</parameter>
+    
+     - la conf de dilicom (test):
+       // le ID du marchand
+       <parameter key="sans_papier_shop.dilicom.gln">"3025594309107"</parameter><!-- quotes because it have to be string param -->
+       // le password   
+       <parameter key="sans_papier_shop.dilicom.password">keipaeguigeiwaik4ooPothae</parameter>
+       //  URL du webserice, la c'est du TEST
+       <parameter key="sans_papier_shop.dilicom.url">https://hub-test.centprod.com/v1/hub-numerique-api/json/sendOrder</parameter>
+       // Offset qui va additioner notre OperationId pour avoir de la place dans leur base a eux
+       // Attention LOUP ! c'est super relou car on peux jamais relancer nos test quand on repart de zero chez nous car ca reste chez eux
+       // Dans notre TransactionController, on a mis un random pour l'instant qu'il faudra virer en prod:
+       // ligne 247 dans TransactionController.php
+       <parameter key="sans_papier_shop.dilicom.offset">100000</parameter>
+       // GLN distrib qui devra remonter depuis solr, la ca indique Immateriel c'est du test
+       <parameter key="sans_papier_shop.dilicom.gln_distrib">3012410001000</parameter>
+    
+  

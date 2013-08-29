@@ -1,0 +1,76 @@
+{#% extends "SansPapierUserDataBundle::layout.html.twig" %#} {# TEMPORARY #}
+{% block preferences %}
+{#% form_theme form 'SansPapierUserDataBundle::form.html.twig' %#}
+<form action="{{ path('sanspapier_userpreferences_update') }}" method="post" {{ form_enctype(form) }} id="{{ form.vars.id }}"><!-- needs the PATHHHHH !-->
+    {#{ form_widget(form) }#}
+    {{ form_errors(form) }}
+    <h3>{{ 'user_preferences' |trans({}, 'SansPapierUserDataBundle') }}</h3>
+    <div id="fos_user_preference_form">
+        <!-- nom prenom -->
+        <div>
+        <label for="{{ form.preference.firstname.vars.id }}">{{ form.preference.firstname.vars.id |trans({}, 'FOSUserBundle') }}</label>
+        {{ form_errors(form.preference.firstname) }}
+        {{ form_widget(form.preference.firstname) }}
+        <label for="{{ form.preference.lastname.vars.id }}">{{ form.preference.lastname.vars.id |trans({}, 'FOSUserBundle') }}</label>
+        {{ form_errors(form.preference.lastname) }}
+        {{ form_widget(form.preference.lastname) }}
+        </div> 
+
+        <div>
+        <label for="{{ form.email.vars.id }}">{{ form.email.vars.id |trans({}, 'FOSUserBundle') }}</label>
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email) }}
+        </div>
+        <div>
+        <label for="{{ form.preference.billing_address.country_code.vars.id }}">{{ form.preference.billing_address.country_code.vars.id |trans({}, 'FOSUserBundle') }}</label>
+        {{ form_errors(form.preference.billing_address.country_code) }}
+        {{ form_widget(form.preference.billing_address.country_code) }}
+        </div> 
+        <div>
+        <label id="_notifiable" for="{{ form.preference.notifiable.vars.id }}">{{ form.preference.notifiable.vars.id |trans({}, 'FOSUserBundle') }}</label>
+        {{ form_errors(form.preference.notifiable) }}
+        {{ form_widget(form.preference.notifiable) }}
+        {{ form_widget(form._token) }}
+        </div>
+    </div>
+    <div>
+        <input type="submit" id="_submit" name="_submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        <span id="{{ form.vars.id }}_confirmed" class="confirmed"></span>
+        <img id="{{ form.vars.id }}_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+    </div>
+</form>
+<script type="text/javascript">
+(function(){  
+  // store the form id
+  var form_id = '{{ form.vars.id }}';
+  // hide the ajax loader animation  
+  $('#'+form_id+'_load_anim').hide();
+   // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+  $('#'+form_id).submit(function(evt){ 
+      evt.preventDefault(); // very important, it bypass the form submission mecanism
+      
+      SPFormMapper.removeErrorElements(form_id);
+      SPFormMapper.createErrorElements(form_id);
+      
+      $('#'+form_id+'_load_anim').show(); // show the wheel, to tells that ajax is working here
+      var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+      $.post('{{ path('sanspapier_userpreferences_update') }}', serialized_data, function(response){
+        $('#'+form_id+'_load_anim').hide(); // okay, ajax request is over.
+        //check if form is valid
+        if(!response.status){ // not valid
+           SPFormMapper.displayErrors(form_id, response.valid_errors);
+           $('#'+form_id+'_confirmed').empty();
+        }else{ // valid
+          $('#'+form_id+'_confirmed').html('{{ 'profile.flash.updated'|trans({}, 'FOSUserBundle') }}');
+          if(typeof AjaxController != "undefined"){
+            AjaxController.prefIsComplete();
+          }
+        }
+      });
+  }); 
+  
+})();
+</script>  
+
+
+{% endblock preferences %}

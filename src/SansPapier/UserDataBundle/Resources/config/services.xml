@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+  <parameters>
+    <parameter key="sans_papier_user_data.user_provider.class">SansPapier\UserDataBundle\Security\Provider\UserDataProvider</parameter>
+    <parameter key="sans_papier_user_data.authentication_handler.class">SansPapier\UserDataBundle\Security\Handler\AjaxAuthenticationListener</parameter>
+    <parameter key="sans_papier_user_data.solr.host">78.248.89.121</parameter>
+    <parameter key="sans_papier_user_data.solr.port">8983</parameter>
+    <parameter key="sans_papier_user_data.solr.core_catalog">SolrCatalog</parameter>
+    <parameter key="sans_papier_user_data.solr.path">/solr/</parameter>
+    <parameter key="sans_papier_user_data.solr.currency">EUR</parameter>
+  </parameters>
+
+  <services>
+    <!-- Provider used to log users by email -->
+    <service id="sans_papier_user_data.user_provider" class="%sans_papier_user_data.user_provider.class%" public="false">
+      <argument type="service" id="fos_user.user_manager" />
+    </service>
+    
+    <!-- Registration Type Override (no username) -->
+    <service id="sans_papier_user_data.registration.form.type" class="SansPapier\UserDataBundle\Form\Type\RegistrationFormType">
+      <tag name="form.type" alias="sans_papier_user_data_registration" />
+      <argument>%fos_user.model.user.class%</argument> <!-- in config.yml ?? -->
+    </service>
+    
+    <!-- Change Password Type Override -->
+    <service id="sans_papier_user_data.change_password.form.type" class="SansPapier\UserDataBundle\Form\Type\ChangePasswordFormType">
+      <tag name="form.type" alias="sans_papier_user_data_change_password" />
+      <argument>%fos_user.model.user.class%</argument>
+    </service>
+    
+    <!-- User Manager Override -->
+    <service id="sans_papier_user_data.user_manager" class="SansPapier\UserDataBundle\Model\UserManager" public="false" parent="fos_user.user_manager.default">
+      
+    </service>
+    
+    <!-- Registration Handler override -->
+    <service id="sans_papier_user_data.registration.form.handler" class="SansPapier\UserDataBundle\Form\Handler\RegistrationFormHandler" scope="request" public="false">
+      <argument type="service" id="fos_user.registration.form" />
+      <argument type="service" id="request" />
+      <argument type="service" id="fos_user.user_manager" />
+      <argument type="service" id="fos_user.mailer" />
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="monolog.logger"/>
+    </service>
+    
+    <!-- ChangePassword Handler override -->
+    <service id="sans_papier_user_data.change_password.form.handler" class="SansPapier\UserDataBundle\Form\Handler\ChangePasswordFormHandler" scope="request" public="false">
+      <argument type="service" id="fos_user.change_password.form" />
+      <argument type="service" id="request" />
+      <argument type="service" id="fos_user.user_manager" />
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="monolog.logger"/>
+    </service>
+    
+    <!-- Ajax autentication Handler -->
+    <service id="sans_papier_user_data.authentication_handler" class="%sans_papier_user_data.authentication_handler.class%">
+      <argument type="service" id="router" />
+      <argument type="service" id="monolog.logger"/>
+      <argument type="service" id="fos_rest.view_handler"/>
+      <argument type="service" id="translator" />
+    </service>
+    
+  </services>
+    
+</container>

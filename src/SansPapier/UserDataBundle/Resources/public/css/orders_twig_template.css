@@ -1,0 +1,327 @@
+body{
+    font-family: Arial;
+    font-size: 12px;
+}
+
+h1 {
+    font-size: 24px;
+    position: relative;
+    float: left;
+}
+
+#logo{
+    position: relative;
+    float: left;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    float: right;
+    
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+    
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+#main_content{
+    position: relative;
+    float: left;
+    border: 1px solid #E9E8E0;
+    
+    padding: 20px;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container{
+    position: relative;
+    float: left;
+    
+    border-bottom: 2px solid #E9E8E0;
+    
+    padding-bottom: 20px;
+}
+
+
+#header {
+
+}
+
+#infos_name{
+
+}
+
+
+#order_details{
+
+}
+
+
+#order_details_products{
+    position: relative;
+    float: left;
+    
+    background: #E9E8E0;
+    
+    min-height: 100px;
+    
+    margin:0;
+    margin-top: 10px;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.tab_image{
+    position: relative;
+    float: left;
+    width: 100px;
+    min-height: 100px;
+    
+    border-right: 1px solid #FFF;
+}
+
+.tab_title{
+    position: relative;
+    float: left;
+    width: 420px;
+    min-height: 100px;
+        
+    border-right: 1px solid #FFF;
+}
+
+.tab_unity_price{
+    position: relative;
+    float: left;
+    width: 150px;
+    min-height: 100px;
+        
+    border-right: 1px solid #FFF;
+}
+
+.tab_num{
+    position: relative;
+    float: left;
+    width: 100px;
+    min-height: 100px;
+        
+    border-right: 1px solid #FFF;
+}
+
+.tab_total_price{
+    position: relative;
+    float: left;
+    width: 150px;
+    min-height: 100px;
+    
+}
+
+.order_details_catTitle{
+    text-align: center;
+    color: #FFF;
+    
+    font-weight: bold;
+}
+
+.order_product_image{
+    position: relative;
+    float: left;
+    
+    width: 40px;
+    height: 60px;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.order_product_title{
+    position: relative;
+    float: left;
+    
+    width: 90%;
+    height: 10px;
+    
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    
+    font-weight: bold;
+}
+
+.order_product_authorName{
+    position: relative;
+    float: left;
+    
+    width: 90%;
+    height: 50px;
+    
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 5px;
+    
+    font-style: italic;
+    color: #999;
+}
+
+.order_product_unity_price{
+    position: relative;
+    float: right;
+    
+    width: 90%;
+    height: 60px;
+    
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    text-align: right;
+    font-style: italic;
+}
+
+.order_product_num{
+    position: relative;
+    float: right;
+    
+    width: 90%;
+    height: 60px;
+    
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    text-align: right;
+}
+
+.order_product_total_price{
+    position: relative;
+    float: right;
+    
+    width: 90%;
+    height: 60px;
+    
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+
+
+
+#total_price{
+    position: relative;
+    float: right;
+    
+    text-align: right;
+    
+    background: #E9E8E0;
+    
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+#infos_perso{
+
+}
+
+#mon_compte{
+    
+}
+
+#mon_compte_content{
+    background: #E9E8E0;
+    
+    height: 40px;
+    
+    margin: 0;
+    margin-top: 10px;
+}
+
+#mon_compte_button{
+    height:27px;
+    width:106px;
+    background:url('http://www.sanspapier.com/images/sp_sprite.png') -704px -15px no-repeat;
+    
+    position: relative;
+    float: right;
+    
+    margin-top: 5px;
+    margin-right: 20px;
+    
+    opacity: 0.8;
+    cursor: pointer;
+    
+}
+#mon_compte_button:hover{
+    opacity: 1;
+}
+
+
+
+#inline_help{
+    position: relative;
+    float: left;
+    
+    width: 60%;
+    margin-left: 20%;
+    
+    text-align: center;
+}
+
+#group_image{
+    position: relative;
+    float: left;
+    
+    margin-left: 390px;
+}
+
+#social{
+    border: none;
+}
+
+#social_contacts{
+    background: #E9E8E0;
+    
+    height: 40px;
+    
+    margin: 0;
+    margin-top: 10px;
+}
+
+
+.float_right{
+    position: relative;
+    float: right;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-style: italic;
+    
+    text-align: right;
+}

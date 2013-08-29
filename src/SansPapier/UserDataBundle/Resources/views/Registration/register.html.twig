@@ -1,0 +1,66 @@
+{#% extends "FOSUserBundle::layout.html.twig" %#}
+{% block fos_user_content %}
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" id="{{form.vars.id}}">
+    {#{ form_widget(form) }#}
+    <div>
+        <div class="formAccountLabel"><label for="fos_user_registration_form_email">Entrez votre adresse e-mail :</label></div>
+        <input type="email" required="required" name="fos_user_registration_form[email]" id="fos_user_registration_form_email">
+    </div>
+    <div>
+        <div id="fos_user_registration_form_plainPassword">
+            <div>
+                <div class="formAccountLabel"><label for="fos_user_registration_form_plainPassword_first">Entrez votre mot de passe :</label></div>
+                <input type="password" required="required" name="fos_user_registration_form[plainPassword][first]" id="fos_user_registration_form_plainPassword_first">
+            <div>
+                <div class="formAccountLabel"><label for="fos_user_registration_form_plainPassword_second">Confirmez votre mot de passe :</label></div>
+                <input type="password" id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" required="required">
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="actionButton">
+        {{ form_widget(form._token) }}
+        <input type="submit" id="create" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+        <img id="{{form.vars.id}}_load_anim" class="load_anim" src="{{ asset('images/load_anim.gif') }}" alt="load_anim" />
+    </div>
+</form>
+
+  <script type="text/javascript">
+    
+  (function(){ 
+    // store the form id
+  var form_id = '{{form.vars.id}}';
+  // add the location to the form  
+  var protocol = $(location).attr('protocol');
+  var host = $(location).attr('host');
+  var urstr = protocol + "//" + host;
+  
+  $('#'+form_id).append('<input type="hidden" name="referer" value="'+urstr+'" />');
+  
+  // hide the ajax loader animation  
+  $('#'+form_id+'_load_anim').hide();
+
+  // add event listener to the form submit, we will cancel the real HTTP post submit and replace with a ajax post instead
+  $('#'+form_id).submit(function(evt){ 
+      evt.preventDefault(); // very important, it bypass the form submission mecanism
+      
+      SPFormMapper.removeErrorElements(form_id);
+      SPFormMapper.createErrorElements(form_id);
+      
+      $('#'+form_id+'_load_anim').show(); // show the wheel, to tells that ajax is working here
+      var serialized_data = $(this).serialize(); // serialize the form post data, very easy and convenient;
+      $.post('{{ path('sanspapier_registration_submit') }}', serialized_data, function(response){
+        $('#'+form_id+'_load_anim').hide(); // okay, ajax request is over.
+        //check if form is valid
+        if(!response.status){ // not valid
+           SPFormMapper.displayErrors(form_id, response.valid_errors);
+        }else{ // valid
+           SPFormMapper.replaceForm(form_id, response.message);
+        }
+      });
+  }); 
+  
+  })();
+    </script>
+{% endblock fos_user_content %}

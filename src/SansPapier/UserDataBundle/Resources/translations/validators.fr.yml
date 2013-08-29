@@ -1,0 +1,39 @@
+credit_card:
+  number:
+    invalid: Numéro de Carte invalide
+  checksum:
+    invalid: Numéro de Carte invalide
+  expired: Cette Carte est déjà arrivé a expiration
+      
+address:
+    zip:
+        invalid: Le code postal est invalide.
+
+sp_user:
+    email:
+        invalid: L'adresse e-mail est invalide
+
+fos_user:
+    username:
+        already_used: Le nom d'utilisateur est déjà utilisé
+        blank: Entrez un nom d'utilsateur s'il vous plaît
+        short: Le nom d'utilisateur est trop court
+        long: Le nom d'utilisateur est trop long
+    email:
+        already_used: Cette adresse e-mail est déjà utilisée, veuillez en choisir une autre.
+        blank: Entrez une adresse e-mail s'il vous plaît
+        short: L'adresse e-mail saisie est trop courte
+        long: L'adresse e-mail saisie est trop longue
+        invalid: L'adresse e-mail saisie est invalide
+    password:
+        blank: Le mot de passe est vide ou non confirmé
+        short: Le mot de passe saisi est trop court
+    new_password:
+        blank: Entrez un nouveau mot de passe s'il vous plaît
+        short: Le nouveau mot de passe saisi est trop court
+    current_password:
+        invalid: Le mot de passe saisi est invalide
+    group:
+        blank: Entrez un nom s'il vous plaît
+        short: Le nom est saisi trop court
+        long: Le nom d'utilisateur saisi est trop long

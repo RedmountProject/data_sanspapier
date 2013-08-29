@@ -1,0 +1,3 @@
+# LOGGING ONLY app.INFO FROM dev.log (Symfony 2)
+tail -f app/logs/dev.log | grep app.INFO
+
